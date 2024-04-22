@@ -57,45 +57,45 @@ char* EspWifiArduino::readline(){
     return out;
 }
 
-int EspWifiArduino::get_int(int id){
+int EspWifiArduino::get_int(key_buf_id id){
     return values[id].val_i;
 }
-float EspWifiArduino::get_float(int id){
+float EspWifiArduino::get_float(key_buf_id id){
     return values[id].val_f;
 }
-char* EspWifiArduino::get_string(int id){
+char* EspWifiArduino::get_string(key_buf_id id){
     return values[id].val_s;
 }
 
-void EspWifiArduino::send_int(int id, int out){
+void EspWifiArduino::send_int(key_buf_id id, int out){
     esp_serial.print("ARD_PACK:");
     esp_serial.print(id);
     esp_serial.print(":i:");
     esp_serial.print(out);
     esp_serial.print("\n");
 }
-void EspWifiArduino::send_float(int id, float out){
+void EspWifiArduino::send_float(key_buf_id id, float out){
     esp_serial.print("ARD_PACK:");
     esp_serial.print(id);
     esp_serial.print(":f:");
     esp_serial.print(out);
     esp_serial.print("\n");
 }
-void EspWifiArduino::send_string(int id, char* out){
+void EspWifiArduino::send_string(key_buf_id id, char* out){
     esp_serial.print("ARD_PACK:");
     esp_serial.print(id);
     esp_serial.print(":s:");
     esp_serial.print(out);
     esp_serial.print("\n");
 }
-void EspWifiArduino::send_string(int id, const char out[]){
+void EspWifiArduino::send_string(key_buf_id id, const char out[]){
     esp_serial.print("ARD_PACK:");
     esp_serial.print(id);
     esp_serial.print(":s:");
     esp_serial.print(out);
     esp_serial.print("\n");
 }
-void EspWifiArduino::send_string(int id, String out){
+void EspWifiArduino::send_string(key_buf_id id, String out){
     esp_serial.print("ARD_PACK:");
     esp_serial.print(id);
     esp_serial.print(":s:");
