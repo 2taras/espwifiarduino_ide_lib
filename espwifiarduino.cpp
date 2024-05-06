@@ -9,14 +9,14 @@ bool EspWifiArduino::begin(){
 void EspWifiArduino::parse_values(char* inp){
     int pack_id;
     int temp_i;
-    float temp_f;
+    char temp_f_buf[9];
     char temp_c[9];
     if(strncmp(inp, "ARD_PACK:", sizeof("ARD_PACK:")-1) != 0)return;
     if(sscanf(inp, "ARD_PACK:%d:i:%d", &pack_id, &temp_i) == 2){
         values[pack_id].val_i = temp_i;
     }
-    if(sscanf(inp, "ARD_PACK:%d:f:%f", &pack_id, &temp_f) == 2){
-        values[pack_id].val_f = temp_f;
+    if(sscanf(inp, "ARD_PACK:%d:f:%8s", &pack_id, temp_f_buf) == 2){
+        values[pack_id].val_f = atof(temp_f_buf);
     }
     if(sscanf(inp, "ARD_PACK:%d:s:%s", &pack_id, temp_c) == 2){
         memcpy(values[pack_id].val_s, temp_c, sizeof(values[pack_id].val_s));
